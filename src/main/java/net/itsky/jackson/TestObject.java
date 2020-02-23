@@ -52,12 +52,25 @@ public class TestObject {
     @Override
     public String toString() {
         return getClass().getSimpleName() + "("
-+                "l=" + l + " (" + l.getClass() + ") "
-                + " s=\"" + s + "\" (" + s.getClass() + ") "
-                + " b=" + b + " (" + b.getClass() + ") "
-                + " set=" + set  + " (" + set.getClass() + ") "
-                + " list=" + list + " (" + list.getClass() + ") "
-                + " map=" + map + " (" + map.getClass() + "))";
+                + toStringWithClass("l", l)
+                + " " + toStringWithClass("s", s)
+                + " " + toStringWithClass("b", b)
+                + " " + toStringWithClass("set", set)
+                + " " + toStringWithClass("list", list)
+                + " " + toStringWithClass("map", map) + ")";
+    }
+
+    private static String toStringWithClass(String name, Object obj) {
+        if (obj == null) {
+            return "name=null";
+        }
+        String result = "name=";
+        if (obj instanceof CharSequence) {
+            result += "\"" + obj + "\"";
+        } else {
+            result += obj;
+        }
+        result += " (" + obj.getClass().getSimpleName() + ")";
+        return result;
     }
 }
-
